@@ -3,11 +3,7 @@
 > Project description
 
 ## Related Projects
-
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+ https://github.com/hrr42-fec-team1/opentable-imagecarousel-proxy-service.git
 
 ## Table of Contents
 
