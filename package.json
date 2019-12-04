@@ -1,17 +1,52 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
-  "license": "",
+  "name": "opentable-imagecarousel-service",
+  "description": "> Project description",
+  "author": "Dan Xu",
+  "license": "ISC",
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
+    "build": "webpack --watch",
+    "start": "nodemon server/index.js --watch"
   },
   "dependencies": {
+    "@babel/cli": "^7.7.4",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "jquery": "^3.4.1",
+    "mongoose": "^5.7.13",
+    "morgan": "^1.9.1",
+    "nodemon": "^2.0.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-bootstrap": "^1.0.0-beta.16",
+    "react-dom": "^16.12.0",
+    "react-grid-gallery": "^0.5.5",
+    "react-grid-layout": "^0.17.1",
+    "react-images": "^1.0.0",
+    "react-photo-gallery": "^8.0.0",
+    "react-responsive": "^8.0.1"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
-  }
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "version": "1.0.0",
+  "main": "server/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hrr42-fec-team1/opentable-imagecarousel-service.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hrr42-fec-team1/opentable-imagecarousel-service/issues"
+  },
+  "homepage": "https://github.com/hrr42-fec-team1/opentable-imagecarousel-service#readme"
 }
