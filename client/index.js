@@ -1,33 +1,43 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
+import Gallery from './src/Gallery.js';
+import Carousel, { Modal, ModalGateway } from 'react-images';
+import { photos } from "./photos.js";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      images: []
-    };
-  }
+function App() {
+  const [currentImage, setCurrentImage] = useState(0);
+  const [viewerIsOpen, setViewerIsOpen] = useState(false);
 
-  componentDidMount() {
-    $.ajax({
-      method: 'GET',
-      url: 'http://localhost:3000/images',
-      success: (data) => {
-        this.setState({
-          images: data
-        });
-        console.log('retrieve data successfully', data);
-      }
-    });
-  }
+  const openLightbox = useCallback((event, { photo, index }) => {
+    setCurrentImage(index);
+    setViewerIsOpen(true);
+  }, []);
 
-  render() {
-    return (
-      <div>{this.state.images}</div>
-    );
-  }
+  const closeLightbox = () => {
+    setCurrentImage(0);
+    setViewerIsOpen(false);
+  };
+
+
+  return (
+    <div>
+      <Gallery photos={photos} onClick={openLightbox} direction='column' columns = {4}/>
+      <ModalGateway>
+        {viewerIsOpen ? (
+          <Modal onClose={closeLightbox}>
+            <Carousel
+              currentIndex={currentImage}
+              views={photos.map(x => ({
+                ...x,
+                srcset: x.srcSet,
+                caption: x.title
+              }))}
+            />
+          </Modal>
+        ) : null}
+      </ModalGateway>
+    </div>
+  );
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
