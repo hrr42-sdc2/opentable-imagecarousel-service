@@ -1,7 +1,7 @@
 import React, { useState, useLayoutEffect, useRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import ResizeObserver from 'resize-observer-polyfill';
-import Photo, { photoPropType } from './Photo';
+import Photo, { photoPropType } from './Photo.jsx';
 import { computeColumnLayout } from './layouts/columns';
 import Container from './Container.jsx';
 import BodyPortal from './BodyPortal.jsx';
@@ -25,7 +25,6 @@ class Gallery extends React.Component {
   updateContainerWidth() {
     let animationFrameID = null;
     const observer = new ResizeObserver(entries => {
-      console.log('entries',entries);
       const newWidth = entries[0].contentRect.width;
       if (this.state.containerWidth !== newWidth) {
         //window.requestAnimationFrame() method tells the browser that you wish to perform an animation and requests that the browser calls a specified function to update an animation before the next repaint.

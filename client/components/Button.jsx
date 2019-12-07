@@ -8,12 +8,12 @@ export default class Button extends React.Component {
     const props = this.props;
     let ripple;
     if (props.hasRipple) {
-      ripple = <circle cx="12" cy="12" r="6"/>;
+      ripple = <rect x="0" y="0" width="50%" height="100%" />;
     }
     return (
       <button className={`lightbox-btn ${ props.hasRipple ? 'lightbox-btn--ripple' : '' }`}
         onClick={ props.onClick.bind(this) }>
-        <Icon icon={props.icon} size={props.size}>
+        <Icon icon={props.icon} width={props.width} height = {props.height}>
           { ripple }
         </Icon>
       </button>

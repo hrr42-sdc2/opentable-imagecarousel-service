@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { icons } from './utils/iconConstants';
 
 const Icon = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={props.size} height={props.size} viewBox={'-6 -6 36 36'}>
+  <svg xmlns="http://www.w3.org/2000/svg" width={props.width} height={props.height} viewBox={'0 0 24 24'}>
     {
       props.children
     }

@@ -4,17 +4,19 @@ const db = require('./index.js');
 const Image = require('./Image.js');
 
 var samplePhotos = [];
+var id = 0;
 
-for (let i = 0; i <= numberOfPhotos; i++) {
+for (let i = 84; i <= 93; i++) {
   let samplePhoto = {};
   samplePhoto.restaurantId = 100;
-  samplePhoto.photoId = i;
+  samplePhoto.photoId = id;
   samplePhoto.photoTitle = `${faker.commerce.productName()}. ${faker.date.month()} ${Math.floor(Math.random() * 28 + 1)}. ${Math.floor(Math.random() * 9 + 2010)}`,
   samplePhoto.photoDescription = faker.commerce.productMaterial(),
-  samplePhoto.src = `https://ot-foodspotting-production.s3.amazonaws.com/reviews/${4179610 + i}/thumb_600.jpg`;
+  samplePhoto.src = `https://resizer.otstatic.com/v2/photos/large/243866${i}.jpg`;
   samplePhoto.width = 400;
   samplePhoto.height = 400;
   samplePhotos.push(samplePhoto);
+  id++;
 }
 
 
@@ -26,4 +28,5 @@ const insertSamplePhotos = () => {
 };
 
 insertSamplePhotos();
+
 

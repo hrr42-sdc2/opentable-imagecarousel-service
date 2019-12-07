@@ -1,7 +1,7 @@
 /* eslint-disable func-style */
 import React, { useState, useCallback } from 'react';
 import ReactDOM from 'react-dom';
-import Gallery from './components/Gallery.js';
+import Gallery from './components/Gallery.jsx';
 import { photos } from './photos.js';
 import $ from 'jquery';
 

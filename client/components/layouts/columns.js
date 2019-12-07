@@ -1,9 +1,6 @@
-//import { round } from '../utils/round';
-
-// compute sizes for column directed layouts
 export const computeColumnLayout = ({ photos, columns, containerWidth}) => {
   photos = photos.slice(0, 9);
-  let minColWidth = (containerWidth - 4 * columns) / (columns * 2);
+  let minColWidth = (containerWidth - 4 * columns) / (columns * 3);
   const margin = minColWidth / 100;
   const photosPositioned = [];
   //small picutre

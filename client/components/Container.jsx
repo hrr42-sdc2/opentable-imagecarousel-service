@@ -80,12 +80,12 @@ export default class Container extends React.Component {
       var borderWidth = Math.round(document.body.offsetWidth / 3.3);
       _this.setState({
         loader: false,
-        positionX: 30,
+        positionX: borderWidth * 0.06,
         positionY: 10,
         width: (borderWidth * 0.87),
         height: (borderWidth * 0.87),
         boxWidth: borderWidth,
-        boxHeight: borderWidth
+        boxHeight: borderWidth * 0.87
       });
     };
     img.src = props.src;
@@ -114,14 +114,14 @@ export default class Container extends React.Component {
     if (this.canMoveToLeft()) {
       leftButton = (
         <div className='lightbox-btn-left'>
-          <Button icon="left-arrow" onClick={this.handleLeftClick} size={ 56 } hasRipple={ true } />
+          <Button icon="left-arrow" onClick={this.handleLeftClick} width={60} height = {45} hasRipple={ true } />
         </div>
       );
     }
     if (this.canMoveToRight()) {
       rightButton = (
         <div className='lightbox-btn-right'>
-          <Button icon="right-arrow" onClick={this.handleRightClick} size={ 56 } hasRipple={ true } />
+          <Button icon="right-arrow" onClick={this.handleRightClick} width={60} height = {45} hasRipple={ true } />
         </div>
       );
     }
@@ -131,7 +131,7 @@ export default class Container extends React.Component {
       top: '40px',
       left: `${(browserWidth - state.boxWidth - 200) / 2}px`,
       width: `${state.boxWidth}px`,
-      height: `${state.boxWidth}px`
+      height: `${state.boxHeight}px`
     };
     let styles = {
       height: '100%',
@@ -140,10 +140,11 @@ export default class Container extends React.Component {
       backgroundSize: `${state.width}px ${state.height}px`,
       backgroundPosition: `${state.positionX}px ${state.positionY}px`,
     };
+
     return (
       <div className='lightbox-backdrop' ref='container'>
         <div className='lightbox-btn-close'>
-          <Button icon="close" onClick={props.toggleLightbox} size={ 34 } hasRipple={ true } />
+          <Button icon="close" onClick={props.toggleLightbox} width={34} height={34} hasRipple={ true } />
         </div>
         <CSSTransitionGroup transitionAppear={true}
           transitionAppearTimeout={transitionTime}
@@ -170,6 +171,11 @@ export default class Container extends React.Component {
                 <div className='lightbox-description'>
                   {image.photoDescription}
                 </div>
+                <div className='lightbox-btn-flag lightbox-btn--ripple' onClick = {() => { console.log('alert'); }}>
+                  <Icon icon={'pet'} width={25} height={25}>
+                    <circle cx="12" cy="12" r="6" fill='none'/>
+                  </Icon>
+                </div>
               </div>
               {rightButton}
             </div>
@@ -179,4 +185,3 @@ export default class Container extends React.Component {
     );
   }
 }
-

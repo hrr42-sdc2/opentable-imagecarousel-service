@@ -1,3 +1,7 @@
+@media (min-width: 1000px) {
+  .lightbox-container {
+    width: 449px;
+  }
 
 .lightbox-backdrop {
   position: fixed;
@@ -66,7 +70,7 @@
 .lightbox-title-content {
   background-color: rgba(0, 0, 0, 0.2);
   box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
-  position: absolute;
+  position: relative;
   width: 100%;
   z-index: 1;
   bottom: 0;
@@ -74,7 +78,9 @@
   padding: 10px;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   line-height: 1.42857143;
+  outline: none;
 }
+
 
 .lightbox-title {
   color: white;
@@ -173,11 +179,11 @@
   user-select: none;
   background-image: none;
   background: none;
-  border: 1px solid transparent;
+  border: 0.5px solid transparent;
   fill: rgb(218, 216, 216);
   opacity: 0.5;
   outline: none;
-  margin: 2px 2px;
+  /* margin: 2px 2px; */
   padding: 0 0;
   -webkit-tap-highlight-color: #ffffff00;
 }
@@ -187,16 +193,16 @@
   transition: opacity 200ms ease;
 }
 
-.lightbox-btn--ripple circle {
+.lightbox-btn--ripple rect {
   fill: none;
 }
 
-.lightbox-btn--ripple:hover circle {
+/* .lightbox-btn--ripple:hover circle {
   transform: scale(3);
   transform-origin: 33% 33%;
   fill: #64646480;
   transition: transform 200ms ease;
-}
+} */
 
 .pictures-container {
   background-color:rgba(0, 0, 0, 0.2);
@@ -209,10 +215,17 @@
 .container-title {
   color: white;
   font-weight: 300;
-  font-size: 30px;
+  font-size: 25px;
   position: absolute;
   top: 50%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
+}
+
+.lightbox-btn-flag {
+  fill:#fff;
+  position: absolute;
+  bottom: 30%;
+  right: 2%;
 }
