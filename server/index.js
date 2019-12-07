@@ -10,11 +10,9 @@ app.use(express.static(__dirname + '/../public'));
 app.get('/images', (req, res) => {
   Image.findAll()
     .then((data) => {
-      res.write(JSON.stringify(data));
-      res.end();
+      res.send(JSON.stringify(data));
     })
     .catch((err) => {
-      console.log('Error:', err);
       res.end();
     });
 });

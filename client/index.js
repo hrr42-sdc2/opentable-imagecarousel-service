@@ -1,43 +1,39 @@
+/* eslint-disable func-style */
 import React, { useState, useCallback } from 'react';
 import ReactDOM from 'react-dom';
-import Gallery from './src/Gallery.js';
-import Carousel, { Modal, ModalGateway } from 'react-images';
-import { photos } from "./photos.js";
+import Gallery from './components/Gallery.jsx';
+import { photos } from './photos.js';
+import $ from 'jquery';
 
-function App() {
-  const [currentImage, setCurrentImage] = useState(0);
-  const [viewerIsOpen, setViewerIsOpen] = useState(false);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      photos: photos
+    };
+  }
 
-  const openLightbox = useCallback((event, { photo, index }) => {
-    setCurrentImage(index);
-    setViewerIsOpen(true);
-  }, []);
+  componentDidMount() {
+    $.ajax({
+      method: 'GET',
+      url: '/images',
+      success: (data) => {
+        this.setState({
+          photos: JSON.parse(data)
+        });
+      }
+    });
+  }
 
-  const closeLightbox = () => {
-    setCurrentImage(0);
-    setViewerIsOpen(false);
-  };
+  render() {
+    return (
+      <div id = 'gallery'>
+        <Gallery images={this.state.photos} columns = {4}/>
+      </div>
+    );
+  }
 
-
-  return (
-    <div>
-      <Gallery photos={photos} onClick={openLightbox} direction='column' columns = {4}/>
-      <ModalGateway>
-        {viewerIsOpen ? (
-          <Modal onClose={closeLightbox}>
-            <Carousel
-              currentIndex={currentImage}
-              views={photos.map(x => ({
-                ...x,
-                srcset: x.srcSet,
-                caption: x.title
-              }))}
-            />
-          </Modal>
-        ) : null}
-      </ModalGateway>
-    </div>
-  );
 }
+
 
 ReactDOM.render(<App />, document.getElementById('app'));

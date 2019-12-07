@@ -6,19 +6,22 @@ const imageSchema = new mongoose.Schema({
   restaurantId: Number,
   photoId: Number,
   photoTitle: String,
-  photoUrl: String
+  src: String,
+  width: Number,
+  height: Number,
+  photoDescription: String
 });
 
 const Image = mongoose.model('Image', imageSchema);
 
 var findAll = () => {
-  return new Promise((resolve, reject) => {
-    Image.find()
-      .exec((err, data) => {
-        resolve(data);
-      });
-  });
+  return Image.find().exec();
 };
+
+// Image.remove({}, (err) => {
+//   console.log(err);
+// });
+
 
 module.exports = Image;
 module.exports.findAll = findAll;

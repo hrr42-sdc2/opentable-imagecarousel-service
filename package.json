@@ -8,34 +8,35 @@
   },
   "scripts": {
     "build": "webpack --watch",
-    "start": "nodemon server/index.js --watch"
+    "start": "nodemon server/index.js --watch",
+    "jest": "./node_modules/.bin/jest"
   },
   "dependencies": {
     "@babel/cli": "^7.7.4",
     "body-parser": "^1.19.0",
-    "bootstrap": "^4.4.1",
     "express": "^4.17.1",
     "faker": "^4.1.0",
+    "jest": "^24.9.0",
     "jquery": "^3.4.1",
     "mongoose": "^5.7.13",
     "morgan": "^1.9.1",
     "nodemon": "^2.0.1",
     "prop-types": "^15.7.2",
+    "puppeteer": "^2.0.0",
     "react": "^16.12.0",
-    "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
-    "react-grid-gallery": "^0.5.5",
-    "react-grid-layout": "^0.17.1",
-    "react-images": "^1.0.0",
-    "react-photo-gallery": "^8.0.0",
-    "react-responsive": "^8.0.1"
+    "react-transition-group": "^1.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
     "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
+    "resize-observer-polyfill": "^1.5.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },
