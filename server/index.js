@@ -2,13 +2,16 @@ const express = require ('express');
 const parser = require('body-parser');
 const Image = require('../database/Image.js');
 
+let port = process.env.PORT || 3000;
+
 let app = express();
 
 app.use(parser.json());
 app.use(express.static(__dirname + '/../public'));
 
-app.get('/images', (req, res) => {
-  Image.findAll()
+app.get('/restaurantid/:id', (req, res) => {
+  const restaurantId = Number(req.params.id);
+  Image.findById(restaurantId)
     .then((data) => {
       res.send(JSON.stringify(data));
     })
@@ -17,7 +20,7 @@ app.get('/images', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log('Port 3000 is listening');
 });
 

@@ -6,6 +6,7 @@ const imageSchema = new mongoose.Schema({
   restaurantId: Number,
   photoId: Number,
   photoTitle: String,
+  photoDate: String,
   src: String,
   width: Number,
   height: Number,
@@ -14,14 +15,11 @@ const imageSchema = new mongoose.Schema({
 
 const Image = mongoose.model('Image', imageSchema);
 
-var findAll = () => {
-  return Image.find().exec();
+var findById = (restaurantId) => {
+  return Image.find({restaurantId})
+    .exec();
 };
-
-// Image.remove({}, (err) => {
-//   console.log(err);
-// });
 
 
 module.exports = Image;
-module.exports.findAll = findAll;
+module.exports.findById = findById;

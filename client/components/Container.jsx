@@ -232,6 +232,7 @@ export default class Container extends React.Component {
               <div className='lightbox-title-content'>
                 <div className='lightbox-title'>
                   {image.photoTitle}
+                  <span style={{fontFamily: 'Josefin Sans, sans-serif', fontWeight: '300'}}>{' ' + image.photoDate}</span>
                 </div>
                 <div className='lightbox-description'>
                   {image.photoDescription}
