@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { icons } from './utils/iconConstants';
 
 const Icon = (props) => (
@@ -12,11 +11,5 @@ const Icon = (props) => (
     }
   </svg>
 );
-
-Icon.propTypes = {
-  icon: PropTypes.string.isRequired,
-  size: PropTypes.number.isRequired
-};
-
 
 export default Icon;

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 
 export default class BodyPortal extends React.PureComponent {
   componentDidMount() {
@@ -26,7 +25,3 @@ export default class BodyPortal extends React.PureComponent {
     return null;
   }
 }
-
-BodyPortal.propTypes = {
-  children: PropTypes.node
-};

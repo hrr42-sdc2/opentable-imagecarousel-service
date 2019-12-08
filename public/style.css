@@ -1,7 +1,7 @@
-@media (min-width: 1000px) {
+/* @media (min-width: 1000px) {
   .lightbox-container {
     width: 449px;
-  }
+  } */
 
 .lightbox-backdrop {
   position: fixed;
@@ -76,7 +76,7 @@
   bottom: 0;
   text-align: left;
   padding: 10px;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Josefin Sans";
   line-height: 1.42857143;
   outline: none;
 }
@@ -84,7 +84,7 @@
 
 .lightbox-title {
   color: white;
-  font-weight: 600;
+  font-weight: 'bold';
   font-size: 16px;
 }
 
@@ -183,7 +183,6 @@
   fill: rgb(218, 216, 216);
   opacity: 0.5;
   outline: none;
-  /* margin: 2px 2px; */
   padding: 0 0;
   -webkit-tap-highlight-color: #ffffff00;
 }
@@ -197,13 +196,6 @@
   fill: none;
 }
 
-/* .lightbox-btn--ripple:hover circle {
-  transform: scale(3);
-  transform-origin: 33% 33%;
-  fill: #64646480;
-  transition: transform 200ms ease;
-} */
-
 .pictures-container {
   background-color:rgba(0, 0, 0, 0.2);
 }
@@ -215,7 +207,8 @@
 .container-title {
   color: white;
   font-weight: 300;
-  font-size: 25px;
+  font-size: 1.5vw;
+  font-family: "Josefin Sans", sans-serif;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -223,7 +216,7 @@
   transform: translate(-50%, -50%);
 }
 
-.lightbox-btn-flag {
+.lightbox-btn-heart {
   fill:#fff;
   position: absolute;
   bottom: 30%;
