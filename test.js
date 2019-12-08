@@ -53,9 +53,9 @@ describe('expect Container component to be rendered correctly', () => {
     expect(wrapper.find('.lightbox-image')).toHaveLength(1);
   });
 
-  it('expect the title and description to be rendered', () => {
+  it('expect the title and date to be rendered', () => {
     const wrapper = shallow(<Container images={photos} selectedImage={1}/>, { disableLifecycleMethods: true });
-    expect(wrapper.find('.lightbox-title').text()).toEqual('happy');
+    expect(wrapper.find('.lightbox-title').text()).toEqual('happy Jan 1, 2012');
   });
 
 
