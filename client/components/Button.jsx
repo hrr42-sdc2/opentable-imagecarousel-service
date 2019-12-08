@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Icon from './Icon.jsx';
 
 
@@ -21,15 +20,3 @@ export default class Button extends React.Component {
   }
 }
 
-Button.defaultProps = {
-  selectedImage: 0,
-  hasRipple: false,
-  size: 24
-};
-
-Button.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  icon: PropTypes.string.isRequired,
-  hasRipple: PropTypes.bool,
-  size: PropTypes.number
-};

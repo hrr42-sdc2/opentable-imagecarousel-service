@@ -21,9 +21,13 @@ export default class Container extends React.Component {
     this.canMoveToLeft = this.canMoveToLeft.bind(this);
     this.canMoveToRight = this.canMoveToRight.bind(this);
     this.toggleControls = this.toggleControls.bind(this);
+    this.heartPopup = this.heartPopup.bind(this);
+    this.showHeartPopup = this.showHeartPopup.bind(this);
+    this.closeHeartPopup = this.closeHeartPopup.bind(this);
     this.state = {
       selectedImageIndex: this.props.selectedImage,
       direction: 'none',
+      showModal: false,
       loader: true,
       positionX: 0,
       positionY: 0,
@@ -67,6 +71,57 @@ export default class Container extends React.Component {
 
   canMoveToRight() {
     return (this.state.selectedImageIndex < (this.props.images.length - 1));
+  }
+
+  heartPopup(styles) {
+    let tableStyles = {
+      position: 'absolute',
+      top: '18%',
+      left: '10%',
+      borderCollapse: 'separate',
+      borderSpacing: '0 10px'
+    };
+    let buttonStyles = {
+      fontFamily: 'Josefin Sans, sans-serif',
+      fontSize: '17px',
+      fontWeight: '300',
+      borderRadius: '5px',
+      color: 'white',
+      backgroundColor: '#00bfff',
+      width: `${this.state.width * 0.55}px`,
+      height: `${this.state.width * 0.08}px`
+    };
+
+    if (!this.state.showModal) { return null; }
+    return (
+      <div className= 'modal-window-container' style={styles}>
+        <table style={tableStyles}>
+          <tr>
+            <button style={buttonStyles} onClick={this.closeHeartPopup}>Add this restaurant to my favorite</button>
+          </tr>
+          <tr>
+            <button style={buttonStyles} onClick={this.closeHeartPopup}>I don't like this restaurant</button>
+          </tr>
+          <tr> </tr>
+          {/* style={{align: 'center', color: '#00bfff'}} */}
+          <tr style={{textAlign: 'center', color: '#00bfff'}} onClick={this.closeHeartPopup}>
+            Cancel
+          </tr>
+        </table>
+      </div>
+    );
+  }
+
+  showHeartPopup() {
+    this.setState({
+      showModal: true
+    });
+  }
+
+  closeHeartPopup() {
+    this.setState({
+      showModal: false
+    });
   }
 
   toggleControls() {
@@ -129,7 +184,7 @@ export default class Container extends React.Component {
     let containerStyles = {
       position: 'fixed',
       top: '40px',
-      left: `${(browserWidth - state.boxWidth - 200) / 2}px`,
+      left: `${(browserWidth - Math.ceil(state.boxWidth / 0.87) - 100) / 2}px`,
       width: `${state.boxWidth}px`,
       height: `${state.boxHeight}px`
     };
@@ -139,6 +194,16 @@ export default class Container extends React.Component {
       backgroundRepeat: 'no-repeat',
       backgroundSize: `${state.width}px ${state.height}px`,
       backgroundPosition: `${state.positionX}px ${state.positionY}px`,
+    };
+
+    let modalStyles = {
+      backgroundColor: 'white',
+      position: 'absolute',
+      top: '30%',
+      left: `${(browserWidth - Math.ceil(state.boxWidth / 0.345)) / 2}px`,
+      width: `${state.boxWidth * 0.6}px`,
+      height: `${state.boxHeight * 0.4}px`,
+      borderRadius: '5px'
     };
 
     return (
@@ -171,12 +236,13 @@ export default class Container extends React.Component {
                 <div className='lightbox-description'>
                   {image.photoDescription}
                 </div>
-                <div className='lightbox-btn-flag lightbox-btn--ripple' onClick = {() => { console.log('alert'); }}>
+                <div className='lightbox-btn-heart' onClick = {() => { this.showHeartPopup(); }}>
                   <Icon icon={'pet'} width={25} height={25}>
-                    <circle cx="12" cy="12" r="6" fill='none'/>
+                    {/* <circle cx="12" cy="12" r="6" fill='none'/> */}
                   </Icon>
                 </div>
               </div>
+              {this.heartPopup(modalStyles)}
               {rightButton}
             </div>
           </div>
