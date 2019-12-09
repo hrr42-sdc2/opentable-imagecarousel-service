@@ -5,7 +5,8 @@ import Gallery from './components/Gallery.jsx';
 import { photos } from './photos.js';
 import $ from 'jquery';
 
-const restaurantid = 1;
+let params = (new URL(document.location)).searchParams;
+let restaurantid = parseInt(params.get('restaurantid')) || 1;
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +21,6 @@ class App extends React.Component {
       method: 'GET',
       url: `/restaurantid/${restaurantid}`,
       success: (data) => {
-        console.log('retrieve data successfully', data);
         this.setState({
           photos: JSON.parse(data)
         });
@@ -38,5 +38,6 @@ class App extends React.Component {
 
 }
 
+document.getElementById('app').style.cursor = 'pointer';
 
 ReactDOM.render(<App />, document.getElementById('app'));

@@ -16,7 +16,7 @@ for (let i = 1; i <= 100; i++) {
     if (i === 1 && j < 11) {
       samplePhoto.src = `https://resizer.otstatic.com/v2/photos/large/243866${j + 83}.jpg`;
     } else {
-      samplePhoto.src = `https://source.unsplash.com/collection/8613861/480x480/?sig=${Math.round(Math.random() * 1300 + 1)}`;
+      samplePhoto.src = `https://source.unsplash.com/collection/597305/480x480/?sig=${Math.round(Math.random() * 3300 + 1)}`;
     }
     samplePhoto.width = 400;
     samplePhoto.height = 400;
