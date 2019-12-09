@@ -97,10 +97,10 @@ export default class Container extends React.Component {
       <div className= 'modal-window-container' style={styles}>
         <table style={tableStyles}>
           <tr>
-            <button style={buttonStyles} onClick={this.closeHeartPopup}>Add this restaurant to my favorite</button>
+            <button style={buttonStyles} onClick={this.closeHeartPopup}>I love this restaurant !</button>
           </tr>
           <tr>
-            <button style={buttonStyles} onClick={this.closeHeartPopup}>I don't like this restaurant</button>
+            <button style={buttonStyles} onClick={this.closeHeartPopup}>I don't like this restaurant !</button>
           </tr>
           <tr> </tr>
           {/* style={{align: 'center', color: '#00bfff'}} */}
