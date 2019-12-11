@@ -38,6 +38,6 @@ class App extends React.Component {
 
 }
 
-document.getElementById('app').style.cursor = 'pointer';
+document.getElementById('imageCarousel-session').style.cursor = 'pointer';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('imageCarousel-session'));

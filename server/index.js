@@ -2,7 +2,7 @@ const express = require ('express');
 const parser = require('body-parser');
 const Image = require('../database/Image.js');
 
-let port = process.env.PORT || 3000;
+let port = process.env.PORT || 3004;
 
 let app = express();
 
@@ -21,7 +21,7 @@ app.get('/restaurantid/:id', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log('Port 3000 is listening');
+  console.log('Port 3004 is listening');
 });
 
 
