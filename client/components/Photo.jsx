@@ -8,7 +8,7 @@ const Photo = ({ index, toggleLightbox, photo, margin, top, left, key }) => {
   imgStyle.left = left;
   imgStyle.top = top;
   let styles = {
-    position: 'fixed',
+    position: 'relative',
     width: photo.width,
     height: photo.height,
     top: top,
