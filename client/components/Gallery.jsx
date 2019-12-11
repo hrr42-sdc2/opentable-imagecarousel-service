@@ -34,7 +34,7 @@ class Gallery extends React.Component {
         });
       }
     });
-    observer.observe(document.body);
+    observer.observe(document.getElementById('lightbox-container'));
     return () => {
       observer.disconnect();
       window.cancelAnimationFrame(animationFrameID);
@@ -75,7 +75,7 @@ class Gallery extends React.Component {
       )
 
     return (
-      <div className='lightbox-container'>
+      <div id='lightbox-container'>
         {images}
         {container}
       </div>
