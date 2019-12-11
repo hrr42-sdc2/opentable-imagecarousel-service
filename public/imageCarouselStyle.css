@@ -1,7 +1,6 @@
-/* @media (min-width: 1000px) {
-  .lightbox-container {
-    width: 449px;
-  } */
+#imageCarousel-session {
+  position: relative;
+}
 
 .lightbox-backdrop {
   position: fixed;
