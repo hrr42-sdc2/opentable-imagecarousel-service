@@ -9,13 +9,15 @@
   "scripts": {
     "build": "webpack --watch",
     "start": "nodemon server/index.js --watch",
-    "db:seed": "node database/seed.js",
+    "db:setup": "node database/seed.js",
     "jest": "./node_modules/.bin/jest"
   },
   "dependencies": {
     "@babel/cli": "^7.7.4",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "dotenv-safe": "^8.2.0",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "jest": "^24.9.0",
