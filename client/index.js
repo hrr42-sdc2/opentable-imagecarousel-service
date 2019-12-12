@@ -30,7 +30,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <div id = 'gallery'>
+      <div>
+        <h4 id = "gallery-title"> 100 Photos</h4>
         <Gallery images={this.state.photos} columns = {4}/>
       </div>
     );
