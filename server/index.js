@@ -1,11 +1,14 @@
 const express = require ('express');
 const parser = require('body-parser');
 const Image = require('../database/Image.js');
+const cors = require('cors');
 
-let port = process.env.PORT || 3004;
+
+let port = process.env.PORT || 3006;
 
 let app = express();
 
+app.use(cors());
 app.use(parser.json());
 app.use(express.static(__dirname + '/../public'));
 
@@ -21,7 +24,7 @@ app.get('/restaurantid/:id', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log('Port 3004 is listening');
+  console.log('Port 3006 is listening');
 });
 
 
