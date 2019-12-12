@@ -4,7 +4,7 @@ const Image = require('../database/Image.js');
 const cors = require('cors');
 
 
-let port = process.env.PORT || 3006;
+let port = process.env.PORT || 3004;
 
 let app = express();
 
@@ -24,7 +24,7 @@ app.get('/restaurantid/:id', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log('Port 3006 is listening');
+  console.log('Port 3004 is listening');
 });
 
 
