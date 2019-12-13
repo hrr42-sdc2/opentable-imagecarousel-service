@@ -2,7 +2,7 @@
 import React, { useState, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import Gallery from './components/Gallery.jsx';
-import { photos } from './photos.js';
+// import { photos } from './photos.js';
 import $ from 'jquery';
 
 let params = (new URL(document.location)).searchParams;
@@ -12,7 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      photos: photos
+      photos: []
     };
   }
 
