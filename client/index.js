@@ -19,7 +19,7 @@ class App extends React.Component {
   componentDidMount() {
     $.ajax({
       method: 'GET',
-      url: `http://ec2-52-53-151-27.us-west-1.compute.amazonaws.com/restaurantid/${restaurantid}`,
+      url: `/restaurantid/${restaurantid}`,
       success: (data) => {
         this.setState({
           photos: JSON.parse(data)
