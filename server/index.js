@@ -11,6 +11,7 @@ let app = express();
 app.use(cors());
 app.use(parser.json());
 app.use(express.static(__dirname + '/../public'));
+console.log('====================');
 
 app.get('/restaurantid/:id', (req, res) => {
   const restaurantId = Number(req.params.id);
