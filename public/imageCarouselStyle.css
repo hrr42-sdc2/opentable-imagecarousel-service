@@ -2,7 +2,7 @@
   position: relative;
 }
 #lightbox-container {
-  position: fixed;
+  position: relative;
   top: 5%;
   width: 70%;
 }
