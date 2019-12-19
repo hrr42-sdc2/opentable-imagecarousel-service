@@ -27,10 +27,31 @@ app.get('/restaurantid/:id', (req, res) => {
 });
 
 app.post('/restaurantid/:id', function(req, res) {
-  db.addPicture(req.body, () => {
-    res.sendStatus(201);
+  db.addPicture(req.body)
+    .then((data) => {
+    res.status(201).send('Picture added!');
   })
+    .catch((err) => {
+      res.status(500).end()
+    })
 });
+
+app.put('/restaurant/:id', (req, res) => {
+  const restaurantId = Number(req.params.id);
+  const data = req.body;
+
+  db.update(restaurantId, data)
+    .then((data) => {
+      res.sendStatus(200).send('Picture updated!')
+    })
+    .catch ((err) => {
+    console.log(err)
+    res.sendStatus(404).end
+  })
+})
+
+
+
 
 app.listen(port, () => {
   console.log(`Port ${port} is listening`);
