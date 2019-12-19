@@ -30,6 +30,12 @@ var addPicture = (singlePicture, cb) => {
   })
 }
 
+var updatePicture = (query, newPicture, cb) => {
+  carousel.update(query, newPicture, (err, data) => {
+    if (err) throw err;
+    cb();
+  })
+};
 
 module.exports = { Image, addPicture };
 module.exports.findById = findById;
