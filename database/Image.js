@@ -31,5 +31,5 @@ var addPicture = (singlePicture, cb) => {
 }
 
 
-module.exports = Image;
+module.exports = { Image, addPicture };
 module.exports.findById = findById;
