@@ -16,12 +16,19 @@ const imageSchema = new mongoose.Schema({
 const Image = mongoose.model('Image', imageSchema);
 
 //! Original
-// var findById = (restaurantId) => {
-//   return Image.find({restaurantId})
-//     .exec();
-// };
+var findById = (restaurantId) => {
+  return Image.find({restaurantId})
+    .exec();
+};
 
+//! Original above ^^^
 
+var addPicture = (singlePicture, cb) => {
+  Image.create(singlePicture, (err, carousel) => {
+    if (err) throw err;
+    cb();
+  })
+}
 
 
 module.exports = Image;

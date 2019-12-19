@@ -1,6 +1,6 @@
 const express = require ('express');
 const parser = require('body-parser');
-const Image = require('../database/Image.js');
+const db = require('../database/Image.js');
 const cors = require('cors');
 
 
@@ -13,19 +13,26 @@ app.use(parser.json());
 app.use(express.static(__dirname + '/../public'));
 console.log('====================');
 
-app.get('/restaurantid/:id', (req, res) => {
-  const restaurantId = Number(req.params.id);
-  Image.findById(restaurantId)
-    .then((data) => {
-      res.send(JSON.stringify(data));
-    })
-    .catch((err) => {
-      res.end();
-    });
+//! Original
+// app.get('/restaurantid/:id', (req, res) => {
+//   const restaurantId = Number(req.params.id);
+//   Image.findById(restaurantId)
+//     .then((data) => {
+//       res.send(JSON.stringify(data));
+//     })
+//     .catch((err) => {
+//       res.end();
+//     });
+// });
+
+app.post('/menu:restaurantid/:id', function(req, res) {
+  db.addPicture(req.body, () => {
+    res.sendStatus(201);
+  })
 });
 
 app.listen(port, () => {
-  console.log('Port 3004 is listening');
+  console.log(`Port ${port} is listening`);
 });
 
 
