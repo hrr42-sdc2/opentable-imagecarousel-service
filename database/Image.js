@@ -15,10 +15,13 @@ const imageSchema = new mongoose.Schema({
 
 const Image = mongoose.model('Image', imageSchema);
 
-var findById = (restaurantId) => {
-  return Image.find({restaurantId})
-    .exec();
-};
+//! Original
+// var findById = (restaurantId) => {
+//   return Image.find({restaurantId})
+//     .exec();
+// };
+
+
 
 
 module.exports = Image;
