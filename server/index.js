@@ -4,6 +4,7 @@ const db = require('../database/Image.js');
 const cors = require('cors');
 
 
+
 let port = process.env.PORT || 3004;
 
 let app = express();
@@ -14,18 +15,18 @@ app.use(express.static(__dirname + '/../public'));
 console.log('====================');
 
 //! Original
-// app.get('/restaurantid/:id', (req, res) => {
-//   const restaurantId = Number(req.params.id);
-//   Image.findById(restaurantId)
-//     .then((data) => {
-//       res.send(JSON.stringify(data));
-//     })
-//     .catch((err) => {
-//       res.end();
-//     });
-// });
+app.get('/restaurantid/:id', (req, res) => {
+  const restaurantId = Number(req.params.id);
+  db.findById(restaurantId)
+    .then((data) => {
+      res.send(JSON.stringify(data));
+    })
+    .catch((err) => {
+      res.end();
+    });
+});
 
-app.post('/menu:restaurantid/:id', function(req, res) {
+app.post('/restaurantid/:id', function(req, res) {
   db.addPicture(req.body, () => {
     res.sendStatus(201);
   })
