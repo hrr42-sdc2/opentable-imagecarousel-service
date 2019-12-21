@@ -23,19 +23,16 @@ var findById = (restaurantId) => {
 
 //! Original above ^^^
 
-var addPicture = (singlePicture, cb) => {
-  Image.create(singlePicture, (err, carousel) => {
-    if (err) throw err;
-    cb();
-  })
+var addPicture = (pictureId) => {
+  return Image.create(pictureId);
 }
 
-var updatePicture = (query, newPicture, cb) => {
-  carousel.update(query, newPicture, (err, data) => {
-    if (err) throw err;
-    cb();
-  })
+var updatePicture = function (imageId, newImageId) {
+  return Image.update(
+    { id: {$gt: imageId} },
+    { $set: {id: newImageId} },
+    { multi: true }
+  );
 };
-
-module.exports = { Image, addPicture };
-module.exports.findById = findById;
+// line 30 may need work $set is not setting the new imageId
+module.exports = { Image, addPicture, updatePicture, findById };

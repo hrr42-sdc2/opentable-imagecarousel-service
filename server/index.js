@@ -27,8 +27,8 @@ app.get('/restaurantid/:id', (req, res) => {
 });
 
 app.post('/restaurantid/:id', function(req, res) {
-  db.addPicture(req.body)
-    .then((data) => {
+  db.addPicture(req.params.id)
+  .then((data) => {
     res.status(201).send('Picture added!');
   })
     .catch((err) => {
@@ -36,17 +36,19 @@ app.post('/restaurantid/:id', function(req, res) {
     })
 });
 
-app.put('/restaurant/:id', (req, res) => {
+app.put('/restaurant/:id/:idToBeUpdated', (req, res) => {
   const restaurantId = Number(req.params.id);
+  const idToBeUpdated = Number(req.params.idToBeUpdated);
   const data = req.body;
-
-  db.update(restaurantId, data)
+  console.log(restaurantId, idToBeUpdated);
+  db.updatePicture(restaurantId, idToBeUpdated)
     .then((data) => {
-      res.sendStatus(200).send('Picture updated!')
+      console.log(data);
+      res.status(200).send('Picture updated!')
     })
     .catch ((err) => {
     console.log(err)
-    res.sendStatus(404).end
+    res.status(404);
   })
 })
 

@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
-var db = mongoose.connect('mongodb://localhost/oc-imageCarousel');
+var mongoUri = 'mongodb://localhost/oc-imageCarousel'
+var db = mongoose.connect(mongoUri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 module.exports = db;
 
 
