@@ -4,7 +4,7 @@ mongoose.Promise = global.Promise;
 
 const imageSchema = new mongoose.Schema({
   restaurantId: Number,
-  photoId: Number,
+  photoId: String,
   photoTitle: String,
   photoDate: String,
   src: String,
@@ -108,22 +108,23 @@ var updatePicture = function (originalPhotoId, data) {
 
 //!! END OF THE CHANGE FOR THE PUT REQUEST
 
-var deletePicture = function (originalPhotoId, data) {
+var deletePicture = function (originalPhotoId) {
   // return Image.deleteOne(
   //   originalPhotoId,
   //   data
   // )
 
-  console.log('This is the originalPhotoId: ', originalPhotoId)
-  console.log('This is the data: ', data)
+  // console.log('This is the originalPhotoId: ', originalPhotoId)
+  // console.log('This is the data: ', data)
+  console.log('This is the photoId: ', originalPhotoId)
   return Image.deleteOne(
     // { restaurantId: {$gt: photoId} },
-    { photoId: originalPhotoId },
-    data
+    { photoId: originalPhotoId }, function (err) {});
+
     // { $set: {photoId: newImageId} },
     // { multi: true }
-  )
+
 }
 
 // line 30 may need work $set is not setting the new imageId
-module.exports = { Image, findRestaurantAndPhoto, addPicture, updatePicture, findById };
+module.exports = { Image, findRestaurantAndPhoto, addPicture, updatePicture, findById, deletePicture};

@@ -68,7 +68,7 @@ app.post('/restaurantid/:id', function(req, res) {
     .then((data) => {
       // console.log('Status, Showing number \'n\' of documents matching restaurantId, number of documents nModified: ',data);
 
-      console.log('This shows the modified photo with all of its details: ',data);
+      console.log('This shows the modified photo with all of its details prior to changing the title: ',data);
       res.status(200).send('Picture updated!')
     })
     .catch ((err) => {
@@ -109,12 +109,17 @@ app.post('/restaurantid/:id', function(req, res) {
 app.delete('/restaurantid/', (req, res) => {
   // const restaurantId = Number(req.params.id);
   // const idToBeUpdated = Number(req.params.idToBeUpdated);
-  const {_id, ...rest} = req.body;
+  // const {_id, ...rest} = req.body;
+  // const entry = req.body;
+  const entry = req.params.id
+  console.log(entry)
 
   // console.log(`Original restaurantId: null, and new ID to replace the Original: ${idToBeUpdated}`);
-  console.log('this is the UPDATED req.body : ', rest)
-  console.log(`Original restaurantId: ${_id}`);
-  db.delete(_id, rest)
+  // console.log('this is the UPDATED req.body : ', rest)
+  // console.log(`Original restaurantId: ${_id}`);
+  // db.collection(_id).deleteOne({_id, rest})
+
+  db.deletePicture(entry)
   //server is requesting the database using db.updatePicture request to get the imageId using
     .then((data) => {
       // console.log('Status, Showing number \'n\' of documents matching restaurantId, number of documents nModified: ',data);
