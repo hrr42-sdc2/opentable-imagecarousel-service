@@ -30,7 +30,7 @@ app.get('/restaurantid/:id', (req, res) => {
 //? Get all photos for a certain restaurantId
 app.get('/restaurantid/:id/:photoId', (req, res) => {
   const restaurantId = Number(req.params.id);
-  const photoId = Number(req.params.photoId);
+  const photoId = String(req.params.photoId);
   db.findRestaurantAndPhoto(restaurantId, photoId)
     .then((data) => {
       res.send(JSON.stringify(data));
@@ -53,6 +53,8 @@ app.post('/restaurantid/:id', function(req, res) {
       res.status(500).end()
     })
 });
+
+
 
 // app.put('/restaurantid/:id/:idToBeUpdated', (req, res) => {
   app.put('/restaurantid/', (req, res) => {
@@ -110,16 +112,16 @@ app.delete('/restaurantid/', (req, res) => {
   // const restaurantId = Number(req.params.id);
   // const idToBeUpdated = Number(req.params.idToBeUpdated);
   // const {_id, ...rest} = req.body;
-  // const entry = req.body;
-  const entry = req.params.id
-  console.log(entry)
+  const entry = req.body;
+  // const entry = req.params._id
+  console.log(entry._id)
 
   // console.log(`Original restaurantId: null, and new ID to replace the Original: ${idToBeUpdated}`);
   // console.log('this is the UPDATED req.body : ', rest)
   // console.log(`Original restaurantId: ${_id}`);
   // db.collection(_id).deleteOne({_id, rest})
 
-  db.deletePicture(entry)
+  db.deletePicture(entry._id)
   //server is requesting the database using db.updatePicture request to get the imageId using
     .then((data) => {
       // console.log('Status, Showing number \'n\' of documents matching restaurantId, number of documents nModified: ',data);
