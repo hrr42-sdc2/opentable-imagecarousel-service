@@ -3,6 +3,7 @@ const db = require('./index.js');
 mongoose.Promise = global.Promise;
 
 const imageSchema = new mongoose.Schema({
+
   restaurantId: Number,
   photoId: String,
   photoTitle: String,
@@ -31,14 +32,14 @@ var findRestaurantAndPhoto = (restaurantId, photoId) => {
     restaurantId: restaurantId,
     photoId: photoId})
   // .exec();
-    .then(result => res.json(result));
+    .then(result => result);
 }
 
 
 //! Original above ^^^
 // use photoId in line 7 instead of pictureId?
-var addPicture = ({samplePhotos}) => {
-  return Image.create({samplePhotos});
+var addPicture = (samplePhotos) => {
+  return Image.create(samplePhotos);
 }
 
 
@@ -119,7 +120,7 @@ var deletePicture = function (originalPhotoId) {
   console.log('This is the photoId: ', originalPhotoId)
   return Image.deleteOne(
     // { restaurantId: {$gt: photoId} },
-    { photoId: originalPhotoId }, function (err) {});
+    { _id: originalPhotoId });
 
     // { $set: {photoId: newImageId} },
     // { multi: true }
