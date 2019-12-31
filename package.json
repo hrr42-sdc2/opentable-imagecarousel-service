@@ -7,7 +7,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "build": "webpack --watch",
+    "build": "webpack -d --watch",
     "start": "nodemon server/index.js --watch",
     "db:setup": "node database/seed.js",
     "jest": "./node_modules/.bin/jest"
