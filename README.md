@@ -39,3 +39,14 @@ npm install -g webpack
 npm install
 ```
 
+Then, run these:
+
+1. Start nodemon to watch your changes and update:
+npm run start
+
+2. To build up my webpack dependencies:
+npm run build
+
+3. To seed the database:
+npm run db:setup
+
