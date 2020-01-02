@@ -1,5 +1,5 @@
 CREATE TABLE imagedb (
 id INT PRIMARY KEY,
-restaurantId TEXT,
+restaurantId INT,
 title TEXT
 )
