@@ -22,7 +22,8 @@ const fs = require('fs');
 // writer.write(['world2', 'bar2'])
 // writer.end()
 
-// produces: hello,foo\nworld,bar\n
+
+//produces: hello,foo\nworld,bar\n
 
 //------------------
 //! Here is the real script bellow :
@@ -56,21 +57,48 @@ var randomizeNum = (min, max) => {
 }
 
 
-
-
-
-var columnsForCarousel = (id) => {
-  return imageCarousel.write({
-    unique_Id: id,
-    restaurant_id: randomizeNum(1, 50),
-    image_title: faker.commerce.productName()
-  })
-
-};
-
 imageCarousel.pipe(fs.createWriteStream(__dirname + '/example.csv'))
-var id = 1;
+
+
+// var columnsForCarousel = (id) => {
+//   return imageCarousel.write({
+//     unique_Id: id,
+//     restaurant_id: randomizeNum(1, 50),
+//     image_title: faker.commerce.productName()
+//   })
+
+// };
+
+//? do a for-loop to generate up to a million,
+//? then import the CSV file information into my database.
+
+// create for loop to make 50 restaurants
+
+for (var i = 1; i <= 50; i++) {
+
+
+
+// var id = randomizeNum(1, 50);
+
+imageCarousel.write({
+  // for each iteration
+  unique_Id: i,
+  restaurant_id: randomizeNum(i, 50),
+  image_title: faker.commerce.productName(),
+  image_url: 'https://picsum.photos/200/300'
+
+})
+
+}
+// imageCarousel.pipe(fs.createWriteStream(__dirname + '/example.csv'))
+
+
 
 
 
 imageCarousel.end()
+
+// I'm expecting:
+// unique_id, hash
+// restaurant_id, 40
+// image_title, 'Cats'

@@ -7,12 +7,12 @@ let samplePhotos = [];
 
 for (let i = 1; i <= 100; i++) {
 
-  samplePhoto.photoId = _id;
+  // samplePhoto.photoId = _id;
   console.log('new photoId using underscore: ', samplePhoto.photoId)
   for (let j = 1; j <= numberOfPhotos; j++) {
     let samplePhoto = {};
     samplePhoto.restaurantId = i;
-    // samplePhoto.photoId = j;
+    samplePhoto.photoId = j;
     samplePhoto.photoTitle = `${faker.commerce.productName()}.`;
     samplePhoto.photoDate = `${faker.date.month()} ${Math.floor(Math.random() * 28 + 1)}. ${Math.floor(Math.random() * 9 + 2010)}`;
     samplePhoto.photoDescription = faker.commerce.productMaterial();
