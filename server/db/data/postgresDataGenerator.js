@@ -135,6 +135,7 @@ var imageMaker = () => {
 // let i = 500000 + 1;
 
 let i = 1000 + 1;
+
 // let i = 50 + 1; // test
 
 imageCarousel.pipe(fs.createWriteStream(__dirname + '/example.csv'))
@@ -165,7 +166,7 @@ var imageGenerator = () => {
       // -- }
 
       // imageCarousel.write(imageMaker());
-      console.log('images written using imageMaker; finished populating');
+      console.log(`Images written using imageMaker; finished populating`);
 
 
       imageCarousel.end();
