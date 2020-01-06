@@ -129,7 +129,7 @@ var imageMaker = () => {
 }
 
 // let i = 10000000 + 1;
-let i = 50 + 1;
+let i = 50 + 1; // test
 
 imageCarousel.pipe(fs.createWriteStream(__dirname + '/example.csv'))
 
