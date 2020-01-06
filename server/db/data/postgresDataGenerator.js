@@ -3,6 +3,8 @@ var faker = require('faker');
 var csvWriter = require('csv-write-stream')
 // var writer = csvWriter()
 
+const numberRestaurants = 50;
+
 // Write 'hello, ' and then end with 'world!'.
 const fs = require('fs');
 
@@ -56,9 +58,9 @@ var randomizeNum = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
 }
 
-
-imageCarousel.pipe(fs.createWriteStream(__dirname + '/example.csv'))
-
+//?
+// imageCarousel.pipe(fs.createWriteStream(__dirname + '/example.csv'))
+//?
 
 // var columnsForCarousel = (id) => {
 //   return imageCarousel.write({
@@ -72,22 +74,29 @@ imageCarousel.pipe(fs.createWriteStream(__dirname + '/example.csv'))
 //? do a for-loop to generate up to a million,
 //? then import the CSV file information into my database.
 
+//! The code below will run out of memory; must use DRAIN
+/**
 // create for loop to make 50 restaurants
 
-for (var i = 1; i <= 50; i++) {
+// for (var i = 1; i <= 50; i++) {
 
 
 
-// var id = randomizeNum(1, 50);
+// create loop for 10 million id's ()
+for (var i = 1; i <= 10000000; i++) {
 
-imageCarousel.write({
-  // for each iteration
-  unique_Id: i,
-  restaurant_id: randomizeNum(i, 50),
-  image_title: faker.commerce.productName(),
-  image_url: 'https://picsum.photos/200/300'
+  // var id = randomizeNum(1, 50);
 
-})
+
+  imageCarousel.write({
+    // for each iteration
+    // unique_Id: i,
+    // restaurant_id: randomizeNum(i, 50),
+    restaurant_id: i,
+    image_title: faker.commerce.productName(),
+    image_url: 'https://picsum.photos/200/300'
+
+  })
 
 }
 // imageCarousel.pipe(fs.createWriteStream(__dirname + '/example.csv'))
@@ -98,7 +107,90 @@ imageCarousel.write({
 
 imageCarousel.end()
 
-// I'm expecting:
-// unique_id, hash
-// restaurant_id, 40
-// image_title, 'Cats'
+  // I'm expecting:
+  // unique_id, hash
+  // restaurant_id, 40
+  // image_title, 'Cats'
+
+*/
+//! Above will run out of memory; need to add DRAIN.
+
+
+var imageMaker = () => {
+  var imageMakerObj = {};
+
+
+  imageMakerObj.restaurant_id = randomizeNum(1, 50);
+
+
+  imageMakerObj.image_title = faker.commerce.productName();
+  imageMakerObj.image_url = 'https://picsum.photos/200/300';
+  return imageMakerObj;
+}
+
+// let i = 10000000 + 1;
+let i = 50 + 1;
+
+imageCarousel.pipe(fs.createWriteStream(__dirname + '/example.csv'))
+
+var imageGenerator = () => {
+  let ok = true;
+
+  do {
+    i -= 1;
+    if (i === 0) {
+
+      // create loop for 10 million id's ()
+      // -- for (var i = 1; i <= 50; i++) {
+
+        // var id = randomizeNum(1, 50);
+
+
+        // imageCarousel.write({
+        //   // for each iteration
+        //   // unique_Id: i,
+        //   // restaurant_id: randomizeNum(i, 50),
+        //   restaurant_id: i,
+        //   image_title: faker.commerce.productName(),
+        //   image_url: 'https://picsum.photos/200/300'
+
+        // })
+
+      // -- }
+
+      // imageCarousel.write(imageMaker());
+      console.log('images written using imageMaker');
+      imageCarousel.end();
+    } else {
+      // ok = imageCarousel.write(imageMaker());
+
+      // create loop for 10 million id's ()
+      //! for (var i = 1; i <= 50; i++) {
+
+        // var id = randomizeNum(1, 50);
+
+
+        ok = imageCarousel.write({
+          // for each iteration
+          // unique_Id: i,
+          // restaurant_id: randomizeNum(i, 50),
+          restaurant_id: i,
+          image_title: faker.commerce.productName(),
+          image_url: 'https://picsum.photos/200/300'
+
+        })
+
+      //! }
+    }
+  } while (i > 0 && ok);
+
+  if (i > 0) {
+    imageCarousel.once('drain', imageGenerator);
+    console.log('DRAIN ACTIVATED!')
+  }
+};
+imageGenerator();
+
+
+
+
