@@ -2,6 +2,7 @@ const express = require ('express');
 const parser = require('body-parser');
 const db = require('../database/Image.js');
 const cors = require('cors');
+const postgresdb = require('../database/postgres.js')
 
 
 
@@ -16,8 +17,8 @@ console.log('====================');
 
 //! Original
 app.get('/restaurantid/:id', (req, res) => {
-  const restaurantId = Number(req.params.id);
-  db.findById(restaurantId)
+  const restaurant_id = Number(req.params.id);
+  postgresdb.findById(restaurant_id)
     .then((data) => {
       res.send(JSON.stringify(data));
     })
