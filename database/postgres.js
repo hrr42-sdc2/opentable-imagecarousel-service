@@ -7,6 +7,9 @@
 // })
 
 const fs = require('fs')
+const express = require ('express');
+const parser = require('body-parser');
+const cors = require('cors');
 const { Pool } = require('pg')
 const pool = new Pool({
   database: 'imagedb',
@@ -73,20 +76,39 @@ return pool.connect()
 
 let findRestaurantAndPhoto = (restraurant_id, image_title) => {
   // promise - checkout a client
-return pool.connect()
-.then(client => {
-  return client
-    .query('SELECT * FROM imagetable WHERE restaurant_id = $1', [restaurant_id])
-    .then(res => {
-      client.release()
-     return (res.rows[0])
+  return pool.connect()
+    .then(client => {
+      return client
+        .query('SELECT * FROM imagetable WHERE restaurant_id = $1 AND image_title = $2', [restaurant_id, image_title])
+        .then(res => {
+          client.release()
+          return (res.rows[0])
+        })
+        .catch(err => {
+          client.release()
+          return (err.stack)
+        })
     })
-    .catch(err => {
-      client.release()
-      return (err.stack)
-    })
-})
 }
 
+// let addPicture = (req.body) => {
 
-module.exports = { findById, findRestaurantAndPhoto };
+//   return pool.connect()
+//     .then(client => {
+//       return client
+//         .query('INSERT INTO imagetable(restaurant_id, image_title, image_url) VALUES ($1, $2, $3)', [restaurant_id,])
+//         .then(res => {
+//           client.release()
+//           return (res.rows[0])
+//         })
+//         .catch(err => {
+//           client.release()
+//           return (err.stack)
+//         })
+//     })
+
+// }
+
+
+
+module.exports = { findById };

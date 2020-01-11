@@ -29,9 +29,9 @@ app.get('/restaurantid/:id', (req, res) => {
 
 
 //? Get all photos for a certain restaurantId
-app.get('/restaurantid/:id/:photoId', (req, res) => {
+app.get('/restaurantid/:id/:imageTitle', (req, res) => {
   const restaurantId = Number(req.params.id);
-  const photoId = String(req.params.photoId);
+  const imageTitle = String(req.params.imageTitle);
   postgresdb.findRestaurantAndPhoto(restaurant_id, image_title)
     .then((data) => {
       res.send(JSON.stringify(data));
@@ -43,7 +43,7 @@ app.get('/restaurantid/:id/:photoId', (req, res) => {
 
 
 app.post('/restaurantid/:id', function(req, res) {
-  db.addPicture(req.body) //send request to db
+  postgresdb.addPicture(req.body) //send request to db
   .then((data) => { //receive data back from db
     //send success status if succesful
 
