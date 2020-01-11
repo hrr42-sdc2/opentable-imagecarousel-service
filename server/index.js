@@ -32,7 +32,7 @@ app.get('/restaurantid/:id', (req, res) => {
 app.get('/restaurantid/:id/:photoId', (req, res) => {
   const restaurantId = Number(req.params.id);
   const photoId = String(req.params.photoId);
-  db.findRestaurantAndPhoto(restaurantId, photoId)
+  postgresdb.findRestaurantAndPhoto(restaurant_id, image_title)
     .then((data) => {
       res.send(JSON.stringify(data));
     })

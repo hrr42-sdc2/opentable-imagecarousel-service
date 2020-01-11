@@ -20,7 +20,7 @@ pool.on('error', (err, client) => {
 })
 // callback - checkout a client
 
-const findById = (restaurant_id) => {
+let findById = (restaurant_id) => {
   // pool.connect((err, client, done) => {
   //   if (err) throw err
   //   client.query('SELECT * FROM imagetable WHERE restaurant_id = $1', [restaurant_id], (err, res) => {
@@ -40,27 +40,26 @@ const findById = (restaurant_id) => {
 
 
 // promise - checkout a client
-pool
-  .connect()
+return pool.connect()
   .then(client => {
     return client
       .query('SELECT * FROM imagetable WHERE restaurant_id = $1', [restaurant_id])
       .then(res => {
         client.release()
-        console.log(res.rows[0])
+       return (res.rows[0])
       })
       .catch(err => {
         client.release()
-        console.log(err.stack)
+        return (err.stack)
       })
   })
 
-}
+
 // // async/await - check out a client
-// ;(async () => {
+// (async () => {
 //   const client = await pool.connect()
 //   try {
-//     const res = await client.query('SELECT * FROM users WHERE id = $1', [1])
+//     const res = await client.query('SELECT * FROM imagetable WHERE restaurant_id = $1', [restaurant_id])
 //     console.log(res.rows[0])
 //   } finally {
 //     // Make sure to release the client before any error handling,
@@ -69,4 +68,25 @@ pool
 //   }
 // })().catch(err => console.log(err.stack))
 
-module.exports = { findById };
+}
+
+
+let findRestaurantAndPhoto = (restraurant_id, image_title) => {
+  // promise - checkout a client
+return pool.connect()
+.then(client => {
+  return client
+    .query('SELECT * FROM imagetable WHERE restaurant_id = $1', [restaurant_id])
+    .then(res => {
+      client.release()
+     return (res.rows[0])
+    })
+    .catch(err => {
+      client.release()
+      return (err.stack)
+    })
+})
+}
+
+
+module.exports = { findById, findRestaurantAndPhoto };
